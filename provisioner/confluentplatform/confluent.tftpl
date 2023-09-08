@@ -1,0 +1,22 @@
+#!/bin/bash
+echo "---------------------------------------"
+echo "Install Java 11"
+echo "---------------------------------------"
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install default-jdk 
+
+echo "---------------------------------------"
+echo "Downloading Confluent Platform ${confluent_version}"
+echo "---------------------------------------"
+curl -O https://packages.confluent.io/archive/${confluent_major}/confluent-${confluent_version}.tar.gz
+
+echo "---------------------------------------"
+echo "Extracting Confluent Platform ${confluent_version}"
+echo "---------------------------------------"
+tar xzf confluent-${confluent_version}.tar.gz
+
+echo "---------------------------------------"
+echo "Path Confluent Platform - ${confluent_version} bin"
+echo "---------------------------------------"
+export CONFLUENT_HOME=~/confluent-${confluent_version}
+export PATH=$PATH:$CONFLUENT_HOME/bin  
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This script is used to get the list of connector plugin files to be included with the binary distribution.
+
+echo "Getting connector plugins...       "
+echo "-----------------------------------"
+./confluent-${confluent_version}/bin/confluent-hub --no-prompt install confluentinc/kafka-connect-replicator:${confluent_version}
+
+# Other connectors
+# confluent-hub install connector-name:connector_version

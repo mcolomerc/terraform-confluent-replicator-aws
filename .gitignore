@@ -1,0 +1,20 @@
+kubecongig*
++* *kubelet*
++* *kubeadm*
+
+.terraform 
+*.txt
++* *README.txt*
+
+*.lock.hcl
++* *terraform.lock.hcl*
+*.lock.info
+*.db
+*tfstate
++* *terraform.tfstate*
+*tfstate.backup
+ 
+myenv.tfvars
+
+*pem*
+*output*

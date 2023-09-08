@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "---------------------------------------"
+echo "Start Connect Distributed"
+echo "---------------------------------------"
+
+./confluent-${confluent_version}/bin/connect-distributed connect-distributed.properties
+
+echo "---------------------------------------"
+echo " Running as Systemd Service"
+echo "---------------------------------------"
+echo "https://github.com/thmshmm/confluent-systemd/blob/master/src/kafka-connect.service"

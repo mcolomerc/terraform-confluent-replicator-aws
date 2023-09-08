@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "---------------------------------------"
+echo "Start Replicator"
+echo "---------------------------------------"
+
+./confluent-${confluent_version}/bin/replicator --cluster.id replicator \
+  --consumer.config /home/ubuntu/consumer.properties \
+  --producer.config /home/ubuntu/producer.properties \
+  --replication.config /home/ubuntu/replicator.properties  
+
+
+  

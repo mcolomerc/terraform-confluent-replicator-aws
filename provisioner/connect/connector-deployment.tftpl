@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "---------------------------------------"
+echo "Check connect"
+echo "---------------------------------------"
+curl http://localhost:8083/
+
+echo "---------------------------------------"
+echo "Building Replicator Connector Configuration"
+echo "---------------------------------------" 
+ 
+cat > /home/ubuntu/replicator.json <<EOL
+{
+        "name":"replicator",
+        "config":{
+                "connector.class":"io.confluent.connect.replicator.ReplicatorSourceConnector",
+                "tasks.max":4,
+                "key.converter":"io.confluent.connect.replicator.util.ByteArrayConverter",
+                "value.converter":"io.confluent.connect.replicator.util.ByteArrayConverter",
+                "src.kafka.bootstrap.servers":"${source_bootstrap_endpoint}",
+                "topic.whitelist":"${source_topicWhiteList}",
+                "topic.rename.format":"{$topic_rename}",
+                "confluent.license":"${license}"
+        }
+}
+EOL
+
+echo "---------------------------------------"
+echo "Create Replicator Connector"
+echo "---------------------------------------"
+curl -X POST -H "Content-Type: application/json" --data @/home/ubuntu/replicator.json http://localhost:8083/connectors
+
+echo "---------------------------------------"
+echo "Check Replicator Connector"
+echo "---------------------------------------"
+curl http://localhost:8083/connectors/replicator/status
