@@ -15,7 +15,7 @@ The replicator is installed as a standalone executable on a EC2 instance or depl
 
 A `map-public-ip-on-launch` Aws subnet is required. 
 
-### Terraform variables
+### Terraform variables
 
 The following variables are required:
 
