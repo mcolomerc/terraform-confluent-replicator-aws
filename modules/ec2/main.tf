@@ -88,7 +88,7 @@ resource "local_file" "configs" {
       source_secret                 = var.kafka_source.credentials.secret,
       source_topicWhiteList         = var.kafka_source.topicWhiteList,
       license                       = var.license,
-      topic_rename                  = "$${topic}.replica",
+      topic_rename                  = "\\$${topic}.replica",
       service_account_id           = var.kafka_destination.service_account_id,
     })
 }

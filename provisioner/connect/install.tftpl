@@ -4,7 +4,7 @@
 
 echo "Getting connector plugins...       "
 echo "-----------------------------------"
-./confluent-${confluent_version}/bin/confluent-hub --no-prompt install confluentinc/kafka-connect-replicator:${confluent_version}
+./confluent-${confluent_version}/bin/confluent-hub install confluentinc/kafka-connect-replicator:${confluent_version} --no-prompt
 
 # Other connectors
 # confluent-hub install connector-name:connector_version

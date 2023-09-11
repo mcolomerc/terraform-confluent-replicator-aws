@@ -18,8 +18,13 @@ cat > /home/ubuntu/replicator.json <<EOL
                 "key.converter":"io.confluent.connect.replicator.util.ByteArrayConverter",
                 "value.converter":"io.confluent.connect.replicator.util.ByteArrayConverter",
                 "src.kafka.bootstrap.servers":"${source_bootstrap_endpoint}",
+                "src.kafka.sasl.mechanism": "PLAIN",
+                "src.kafka.request.timeout.ms": 20000,
+                "src.kafka.retry.backoff.ms" : 500,
+                "src.kafka.sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"${source_key}\"  password=\"${source_secret}\";",
+                "src.kafka.security.protocol": "SASL_SSL", 
                 "topic.whitelist":"${source_topicWhiteList}",
-                "topic.rename.format":"{$topic_rename}",
+                "topic.rename.format":"${topic_rename}",
                 "confluent.license":"${license}"
         }
 }
@@ -33,4 +38,12 @@ curl -X POST -H "Content-Type: application/json" --data @/home/ubuntu/replicator
 echo "---------------------------------------"
 echo "Check Replicator Connector"
 echo "---------------------------------------"
-curl http://localhost:8083/connectors/replicator/status
+echo "curl http://localhost:8083/connectors/replicator/status"
+
+echo "---------------------------------------" 
+echo "Get Connectors: curl http://localhost:8083/connectors"
+echo "Get Connector Status: curl http://localhost:8083/connectors/replicator/status"
+echo "Get Connector Config: curl http://localhost:8083/connectors/replicator/config"
+echo "Delete: curl -X DELETE http://localhost:8083/connectors/replicator"
+echo "---------------------------------------"
+echo "curl -X PUT -H "Content-Type: application/json" --data @/home/ubuntu/replicator.json http://localhost:8083/connectors/replicator"

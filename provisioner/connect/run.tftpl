@@ -1,5 +1,27 @@
 #!/bin/bash
 
+echo " ACLS for Destination Cluster"
+echo "---------------------------------------"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations describe --cluster-scope"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations describe --cluster <cluster-id>"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations describe, write, read --topic <topic_name>"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations create,write,read,describe,describe-configs,alter-configs --topic _confluent-command"
+
+echo " ACLS for Source Cluster" 
+echo "---------------------------------------"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations describe --cluster-scope"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations describe --cluster <source_cluster_id>"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations read, describe, describe-configs --topic <topic_name>"
+echo "confluent kafka acl create --allow --service-account ${service_account_id} --operations write,describe,read,create,describe-configs --topic __consumer_timestamps" 
+
+echo "---------------------------------------"
+echo "https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-to-write-to-the-destination-cluster"
+echo "https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-to-read-from-the-source-cluster"
+echo "https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-license-management"
+echo "https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-the-timestamp-interceptor"
+echo "https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-source-offset-management"
+
+
 echo "---------------------------------------"
 echo "Start Connect Distributed"
 echo "---------------------------------------"
@@ -10,3 +32,5 @@ echo "---------------------------------------"
 echo " Running as Systemd Service"
 echo "---------------------------------------"
 echo "https://github.com/thmshmm/confluent-systemd/blob/master/src/kafka-connect.service"
+
+

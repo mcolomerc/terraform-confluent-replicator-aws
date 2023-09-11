@@ -4,6 +4,15 @@
 
 The replicator is installed as a standalone executable on a EC2 instance or deployed as a Connector.
 
+## AWS Secret Manager
+
+AWS Secret Manager is used to store the Confluent Cloud cluster credentials.  
+
+The following credentials are required:
+
+- CONFLUENT_API_KEY
+- CONFLUENT_API_SECRET
+
 ## Terraform
 
 - Get Confluent Cloud cluster credentials from AWS Secret Manager.
@@ -53,6 +62,15 @@ kafka_destination = {
 ```hcl
  license = ""
 ```
+ 
+## ACLs  
+
+- [Destination](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-to-write-to-the-destination-cluster")
+- [Source](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-to-read-from-the-source-cluster")
+- [License](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-license-management")
+- [Timestamp interceptor](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-the-timestamp-interceptor")
+- [Source Offset Management](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-for-source-offset-management")
+
 
 
 ## AWS Credentials
@@ -64,4 +82,3 @@ export AWS_ACCESS_KEY_ID=""
 export AWS_SECRET_ACCESS_KEY=""
 export AWS_SESSION_TOKEN=""
 ```
- 
